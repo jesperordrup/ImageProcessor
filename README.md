@@ -17,4 +17,4 @@ This little hack tests if json file is changed and clears cache if needed.
 
 Url example
 
-<img src="/remote.axd?http://hostname/cropup/banner/media/1014/someimagefile.jpg?preset=anypresetyoumighthave"/>
+img src="/remote.axd?http://hostname/cropup/banner/media/1014/someimagefile.jpg?preset=anypresetyoumighthave"
