@@ -171,7 +171,54 @@ namespace ImageProcessor.Web.Caching
             bool isUpdated = false;
             CachedImage cachedImage;
 
-            if (this.isRemote)
+            // is this a cropup url ....
+            bool isCropup = this.requestPath.ToLower().IndexOf("/cropup/") > -1;
+
+
+            if (isCropup)
+            {
+                try
+                {
+                    // get the json file name associated with the request. We will do timestamp check against that.
+                    string urlpath = new Uri(this.requestPath).PathAndQuery;
+                    string servermappedpath = request.MapPath(urlpath.Substring(urlpath.ToLower().IndexOf("/media")));
+                    string jsonFileToCheck = servermappedpath + ".crop.json";
+
+
+                    cachedImage = await CacheIndexer.GetValueAsync(path);
+                    FileInfo jsonFileInfo = new FileInfo(jsonFileToCheck);
+
+                    if (cachedImage != null && jsonFileInfo.Exists)
+                    {
+                        // Looking for json file
+                        // or if the max age is different.
+                        if (this.IsExpired(cachedImage.CreationTimeUtc) || jsonFileInfo.LastWriteTimeUtc > cachedImage.LastWriteTimeUtc)
+                        {
+                            CacheIndexer.Remove(path);
+                            isUpdated = true;
+                        }
+                    }
+                    else if (!jsonFileInfo.Exists)
+                    {
+
+                        // no json means no first time save means no changes
+                        isUpdated = false;
+
+                    }
+                    else
+                    {
+                        // Nothing in the cache so we should return true.
+                        isUpdated = true;
+                    }
+                }
+                catch
+                {
+
+                    isUpdated = false;
+                }
+
+            }
+            else if (this.isRemote)
             {
                 cachedImage = await CacheIndexer.GetValueAsync(path);
 
