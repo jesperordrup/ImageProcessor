@@ -8,13 +8,17 @@ It's fast, extensible, easy to use, comes bundled with some great features and i
 For full documentation please see [http://jimbobsquarepants.github.io/ImageProcessor/](http://jimbobsquarepants.github.io/ImageProcessor/)
 
 
-Exponent Cropup
-===============
-... uses an json file to hold all metadata. This file is updated when any change to any crop's are made.
+Exponent Cropup (EC)
+====================
+Is an package for Umbraco which - and this might come as a surprise - crops images!
+http://our.umbraco.org/projects/website-utilities/eksponent-cropup.
 
-This little hack tests if json file is changed and clears cache if needed.
+EC uses a separate json file to hold all metadata for each image. This file is updated when any change to any crop's are made.
 
+Imageprocessor can cache all files processed. All remote files are "hard cached" and only refreshed when cache times out.
 
-Url example
+This little hack allows Imageprocessor to tests if json file is changed and clears cache if needed. The basic idea is this: If image path contains /cropup/ then check if json file is updated. Thats it.
+
+Url example. 
 
 img src="/remote.axd?http://hostname/cropup/banner/media/1014/someimagefile.jpg?preset=anypresetyoumighthave"
