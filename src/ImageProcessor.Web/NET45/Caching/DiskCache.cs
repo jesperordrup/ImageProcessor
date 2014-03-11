@@ -202,7 +202,7 @@ namespace ImageProcessor.Web.Caching
                     {
 
                         // no json means no first time save means no changes
-                        isUpdated = false;
+                        isUpdated = true;
 
                     }
                     else
