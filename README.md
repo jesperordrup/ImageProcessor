@@ -8,7 +8,7 @@ It's fast, extensible, easy to use, comes bundled with some great features and i
 For full documentation please see [http://jimbobsquarepants.github.io/ImageProcessor/](http://jimbobsquarepants.github.io/ImageProcessor/)
 
 
-Exponent Cropup (EC)
+Eksponent Cropup (EC)
 ====================
 Is an package for Umbraco which - and this might come as a surprise - crops images!
 http://our.umbraco.org/projects/website-utilities/eksponent-cropup.
@@ -22,3 +22,12 @@ This little hack allows Imageprocessor to tests if json file is changed and clea
 Url example. 
 
 img src="/remote.axd?http://hostname/cropup/banner/media/1014/someimagefile.jpg?preset=anypresetyoumighthave"
+
+
+Install
+=======
+Install Eksponent cropup
+Install Imageprocessor package for Umbraco
+Update bin with Imageprocessor.web.dll and Imageprocessor.dll from this fork.
+Update config/Imageprocessor config files with the files from this fork.
+Have fun.
